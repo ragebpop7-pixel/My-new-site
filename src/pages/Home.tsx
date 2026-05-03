@@ -53,7 +53,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     className="group relative"
                   >
-                    <Link to={"/article/test"}>
+                    <Link to={"/article/" + mainStory.id}>
   <img src="test.jpg" />
 </Link>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
