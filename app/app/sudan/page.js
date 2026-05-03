@@ -31,4 +31,4 @@ export default async function Sudan() {
       ))}
     </div>
   );
-                }
+}
