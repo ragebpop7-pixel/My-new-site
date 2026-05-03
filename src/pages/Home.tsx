@@ -8,7 +8,7 @@ import CategoryNav from '../components/CategoryNav';
 import { motion } from 'motion/react';
 import React from 'react';
 
-export default function Home() {
+export default function Home(const [searchTerm, setSearchTerm] = useState('');) {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const categoryFilter = searchParams.get('category');
