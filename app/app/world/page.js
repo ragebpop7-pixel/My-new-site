@@ -1,8 +1,7 @@
-export default function Sudan() {
+export default function World() {
   return (
     <div>
-      <h1>أخبار السودان</h1>
-      <p>هنا هيظهر الأخبار لاحقًا</p>
+      <h1>أخبار العالم</h1>
     </div>
   );
 }
