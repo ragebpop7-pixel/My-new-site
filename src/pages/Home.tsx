@@ -131,9 +131,7 @@ export default function Home() {
           <aside className="lg:col-span-4 space-y-10">
             <TrendingSection />
             <Newsletter />
-          </aside>
-        </div>
-      </div>
+          </aside></div>
     </main>
   );
-                  }
+}
