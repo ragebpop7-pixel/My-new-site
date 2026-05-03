@@ -1,51 +1,58 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-interface Article {
-  title: string;
-  description: string;
-  image: string;
-  url: string;
-  source: { name: string };
-}
-
-function App() {
-  const [news, setNews] = useState<Article[]>([]);
+export default function App() {
+  const [articles, setArticles] = useState([]);
+  const [status, setStatus] = useState('جاري جلب الأخبار...');
 
   useEffect(() => {
-    const apiKey = '8b71de9459274d41009995b252265efa';
-    const url = `https://gnews.io/api/v4/search?q=السودان+أفريقيا&lang=ar&max=10&apikey=${apiKey}`;
+    const fetchNews = async () => {
+      // المفتاح بتاعك
+      const apiKey = '8b71de9459274d41009995b252265efa';
+      // الرابط - تأكد إنه HTTPS
+      const url = `https://gnews.io/api/v4/search?q=السودان&lang=ar&max=5&apikey=${apiKey}`;
 
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        if (data.articles) setNews(data.articles);
-      })
-      .catch(err => console.error("Error fetching news:", err));
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`خطأ من المصدر: ${response.status}`);
+        
+        const data = await response.json();
+        
+        if (data.articles && data.articles.length > 0) {
+          setArticles(data.articles);
+        } else {
+          setStatus('لا توجد أخبار جديدة حالياً.');
+        }
+      } catch (error) {
+        console.error(error);
+        setStatus('فشل الاتصال.. تأكد من مفتاح الـ API أو الإنترنت.');
+      }
+    };
+
+    fetchNews();
   }, []);
 
   return (
-    <div style={{ padding: '20px', direction: 'rtl', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
-      <h2 style={{ textAlign: 'center', color: '#333' }}>آخر أخبار أفريقيا والسودان</h2>
+    <div style={{ direction: 'rtl', padding: '15px', fontFamily: 'sans-serif' }}>
+      <h2 style={{ textAlign: 'center', color: '#0056b3' }}>أخبار السودان العاجلة</h2>
       
-      <div id="news-container" style={{ marginTop: '20px' }}>
-        {news.length === 0 ? (
-          <p style={{ textAlign: 'center' }}>جاري تحميل الأخبار...</p>
-        ) : (
-          news.map((article, index) => (
-            <div key={index} style={{ background: 'white', borderRadius: '12px', marginBottom: '15px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-              <img src={article.image} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              <div style={{ padding: '15px' }}>
-                <small style={{ color: '#e91e63' }}>{article.source.name}</small>
-                <h3 style={{ margin: '10px 0', fontSize: '18px' }}>{article.title}</h3>
-                <p style={{ fontSize: '14px', color: '#666' }}>{article.description}</p>
-                <a href={article.url} target="_blank" style={{ color: '#e91e63', fontWeight: 'bold', textDecoration: 'none' }}>إقرأ المزيد ←</a>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
+      {articles.length === 0 ? (
+        <p style={{ textAlign: 'center', color: '#666' }}>{status}</p>
+      ) : (
+        articles.map((art, index) => (
+          <div key={index} style={{ borderBottom: '1px solid #ddd', padding: '15px 0' }}>
+            <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>{art.title}</h3>
+            <p style={{ fontSize: '13px', color: '#555' }}>{art.description?.substring(0, 80)}...</p>
+            <a 
+              href={art.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ color: '#e91e63', fontSize: '14px', fontWeight: 'bold', textDecoration: 'none' }}
+            >
+              إقرأ المزيد في {art.source.name} ←
+            </a>
+          </div>
+        ))
+      )}
     </div>
-  )
+  );
 }
-
-export default App
