@@ -54,12 +54,13 @@ export default function Home() {
                     className="group relative"
                   >
                     <Link to={`/article/${mainStory.id}`}>
-                      <div className="relative aspect-[16/9] overflow-hidden rounded-3xl mb-6 shadow-2xl">
-                        <img
-                          src={mainStory.imageUrl}
-                          alt={mainStory.title}
-                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                        />
+                    <Link to={`/article/${mainStory.id}`}>
+  <div className="relative aspect-[16/9] overflow-hidden rounded-3xl mb-6 shadow-2xl">
+    <img
+      src={mainStory.imageUrl}
+      alt={mainStory.title}
+      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+    />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                         <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
                           <div className="flex items-center gap-3 mb-4">
