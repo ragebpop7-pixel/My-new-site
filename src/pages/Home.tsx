@@ -32,6 +32,17 @@ export default function Home() {
   return (
     <main className="min-h-screen pb-20">
       <CategoryNav />
+      <CategoryNav />
+
+<div className="mb-6 flex justify-center">
+  <input
+    type="text"
+    placeholder="ابحث في الأخبار..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="w-full max-w-md px-4 py-3 border rounded-xl"
+  />
+</div>
 
       {/* 🔍 SEARCH BAR */}
       <div className="mb-6 flex justify-center">
