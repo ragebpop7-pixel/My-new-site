@@ -57,34 +57,38 @@ export default function Home() {
                 className="group relative"
               >
                 <Link to={`/article/${mainStory.id}`}>
-                  <div className="relative aspect-[16/9] overflow-hidden rounded-3xl mb-6 shadow-2xl">
-                    <img
-                      src={mainStory.imageUrl}
-                      alt={mainStory.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                    /imageUrl: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=800'>
-                    <div className="absolute inset-0 gradient-overlay" />
-                    <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="bg-brand-red text-white px-3 py-1 rounded-full text-xs font-black uppercase shadow-lg">
-                          خبر رئيسي
-                        </span>
-                        <span className="text-white/70 font-bold text-xs">
-                          {mainStory.publishDate}
-                        </span>
-                      </div>
+  <div className="relative aspect-[16/9] overflow-hidden rounded-3xl mb-6 shadow-2xl">
+    
+    <img
+      src={mainStory.imageUrl}
+      alt={mainStory.title}
+      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+      referrerPolicy="no-referrer"
+    />
 
-                      <h1 className="text-2xl md:text-5xl font-black leading-tight group-hover:text-brand-red transition-colors">
-                        {mainStory.title}
-                      </h1>
+    <div className="absolute inset-0 gradient-overlay" />
 
-                      <p className="hidden md:block text-white/80 text-lg font-medium mt-4 line-clamp-2">
-                        {mainStory.excerpt}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
+    <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="bg-brand-red text-white px-3 py-1 rounded-full text-xs font-black uppercase shadow-lg">
+          خبر رئيسي
+        </span>
+        <span className="text-white/70 font-bold text-xs">
+          {mainStory.publishDate}
+        </span>
+      </div>
+
+      <h1 className="text-2xl md:text-5xl font-black leading-tight group-hover:text-brand-red transition-colors">
+        {mainStory.title}
+      </h1>
+
+      <p className="hidden md:block text-white/80 text-lg font-medium mt-4 line-clamp-2 max-w-3xl">
+        {mainStory.excerpt}
+      </p>
+    </div>
+
+  </div>
+</Link>
               </motion.div>
             )}
           </div>
