@@ -7,7 +7,7 @@ export default function App() {
   useEffect(() => {
     const fetchNews = async () => {
       // المفتاح بتاعك
-      const apiKey = '8b71de9459274d41009995b252265efa';
+      const apiKey = '733ec455e336be1b8b95d2c3a17b7938';
       // الرابط - تأكد إنه HTTPS
       const url = `https://gnews.io/api/v4/search?q=السودان&lang=ar&max=5&apikey=${apiKey}`;
 
