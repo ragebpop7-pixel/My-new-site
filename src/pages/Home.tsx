@@ -53,8 +53,33 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     className="group relative"
                   >
-                    <Link to={"/article/" + mainStory.id}>
-  <img src="test.jpg" />
+<Link to={"/article/" + mainStory.id}>
+  <div className="relative aspect-[16/9] overflow-hidden rounded-3xl mb-6 shadow-2xl">
+
+    <img
+      src={mainStory.imageUrl}
+      alt={mainStory.title}
+      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+    />
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+
+    <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+          خبر رئيسي
+        </span>
+        <span className="text-white/70 text-xs">
+          {mainStory.publishDate}
+        </span>
+      </div>
+
+      <h1 className="text-2xl md:text-5xl font-black leading-tight group-hover:text-red-400 transition-colors">
+        {mainStory.title}
+      </h1>
+    </div>
+
+  </div>
 </Link>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                         <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
