@@ -8,14 +8,22 @@ import CategoryNav from '../components/CategoryNav';
 import { motion } from 'motion/react';
 import React from 'react';
 
-export default function Home(const [searchTerm, setSearchTerm] = useState('');) {
+export default function Home() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const categoryFilter = searchParams.get('category');
 
-  const filteredArticles = categoryFilter 
-    ? mockArticles.filter(a => a.category === categoryFilter)
-    : mockArticles;
+  const filteredArticles = mockArticles.filter(a => {
+    const matchCategory = categoryFilter ? a.category === categoryFilter : true;
+
+    const matchSearch =
+      a.title.includes(searchTerm) ||
+      a.excerpt.includes(searchTerm);
+
+    return matchCategory && matchSearch;
+  });
 
   const mainStory = filteredArticles[0];
   const sideStories = filteredArticles.slice(1, 3);
@@ -25,39 +33,18 @@ export default function Home(const [searchTerm, setSearchTerm] = useState('');) 
     <main className="min-h-screen pb-20">
       <CategoryNav />
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Premium Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-          {/* Main Headline (8 cols) */}
-          <div className="lg:col-span-8">
-            {mainStory && (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="group relative"
-              >
-                <Link to={`/article/${mainStory.id}`}>
-                  <div className="relative aspect-[16/9] overflow-hidden rounded-3xl mb-6 shadow-2xl">
-                    <img 
-                      src={mainStory.imageUrl} 
-                      alt={mainStory.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 gradient-overlay" />
-                    <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="bg-brand-red text-white px-3 py-1 rounded-full text-xs font-black uppercase shadow-lg">خبر رئيسي</span>
-                        <span className="text-white/70 font-bold text-xs">{mainStory.publishDate}</span>
-                      </div>
-                      <h1 className="text-2xl md:text-5xl font-black leading-tight group-hover:text-brand-red transition-colors">
-                        {mainStory.title}
-                      </h1>
-                      <p className="hidden md:block text-white/80 text-lg font-medium leading-relaxed mt-4 line-clamp-2 max-w-3xl">
-                        {mainStory.excerpt}
-                      </p>
-                    </div>
-                  </div>
+      {/* 🔍 SEARCH BAR */}
+      <div className="mb-6 flex justify-center">
+        <input
+          type="text"
+          placeholder="ابحث في الأخبار..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full max-w-md px-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div className="container mx-auto px-4 py-8">                  </div>
                 </Link>
               </motion.div>
             )}
