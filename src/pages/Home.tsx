@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { mockArticles } from '../data/mockNews';
 import ArticleCard from '../components/ArticleCard';
