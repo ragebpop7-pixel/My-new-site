@@ -63,7 +63,7 @@ export default function Home() {
                       alt={mainStory.title}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                       referrerPolicy="no-referrer"
-                    />
+                    /imageUrl: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=800'>
                     <div className="absolute inset-0 gradient-overlay" />
                     <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
                       <div className="flex items-center gap-3 mb-4">
