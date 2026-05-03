@@ -44,38 +44,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="container mx-auto px-4 py-8">                  </div>
-                </Link>
-              </motion.div>
-            )}
-          </div>
-
-          {/* Side Hero Stories (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
-            {sideStories.map(article => (
-              <div key={article.id} className="bg-white p-2 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                <ArticleCard article={article} variant="horizontal" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Latest Feed (8 cols) */}
-          <div className="lg:col-span-8 space-y-12">
-            <div className="flex items-center justify-between border-b-4 border-brand-blue pb-2 mb-8">
-              <h2 className="text-2xl font-black text-brand-blue">أحدث الأخبار</h2>
-              <button className="text-sm font-bold text-brand-red hover:underline transition-all">مشاهدة الكل</button>
-            </div>
-            
-            <div className="space-y-10">
-              {feedStories.map(article => (
-                <ArticleCard key={article.id} article={article} variant="horizontal" />
-              ))}
-            </div>
-            
-            <div className="flex justify-center pt-8">
-              <button className="px-10 py-4 bg-brand-blue hover:bg-brand-red text-white rounded-2xl font-black shadow-xl transition-all active:scale-95">
+      <div className="container mx-auto px-4 py-8">              <button className="px-10 py-4 bg-brand-blue hover:bg-brand-red text-white rounded-2xl font-black shadow-xl transition-all active:scale-95">
                 تحميل المزيد من الأخبار
               </button>
             </div>
