@@ -33,30 +33,19 @@ export const mockArticles: NewsArticle[] = [
   },
   {
     id: '3',
-    title: 'إحياء الفعاليات الثقافية في دارفور يعزز روح التعايش',
-    excerpt:
-      'شهدت مدينة الفاشر انطلاق مهرجان ثقافي بمشاركة واسعة من مختلف الولايات السودانية.',
-    content:
-      'انطلقت فعاليات مهرجان السلام الثقافي في دارفور وسط حضور جماهيري كبير.',
-    category: 'society',
-    author: 'عمر النيل',
+    title: 'الرياضة: المنتخب الوطني يستعد لمباراة حاسمة في التصفيات القارية.',
+    excerpt: '...',
+    content: '...',
+    category: 'sports',
+    author: '...',
     publishDate: '2024-05-14',
-    imageUrl:
-      'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: '4',
-    title: 'قمة أفريقية لبحث دعم الاستقرار في السودان',
-    excerpt:
-      'تستضيف أديس أبابا اجتماعاً إقليمياً لمناقشة سبل دعم العملية السياسية في السودان.',
-    content:
-      'يعقد قادة أفارقة اجتماعاً رفيع المستوى لبحث آليات دعم الاستقرار في السودان.',
-    category: 'international',
-    author: 'مراسل دولي',
-    publishDate: '2024-05-13',
-    imageUrl:
-      'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&q=80&w=800',
-  },
+    title: '...',
+  }
+];
   {
     id: '5',
     title: 'التعليم في السودان بين التحديات وآمال الإصلاح',
