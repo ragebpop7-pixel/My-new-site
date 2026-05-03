@@ -3,37 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>أخبار السودان</title>
+    <title>موقعي الإخباري</title>
     <style>
-      body {
-        direction: rtl;
-        font-family: Tahoma, Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 20px;
-      }
-      #news-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-      }
-      .news-card {
-        background: white;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      }
-      .news-card img {
-        max-width: 100%;
-        border-radius: 5px;
-      }
+      body { direction: rtl; font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+      #news-container { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
+      .news-card { background: white; border-radius: 10px; padding: 15px; width: 100%; max-width: 350px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+      .news-card img { width: 100%; border-radius: 8px; }
     </style>
   </head>
   <body>
-    <div id="root"></div> <h2 style="text-align: center;">آخر أخبار السودان</h2>
-    <div id="news-container">جاري تحميل الأخبار...</div>
+    <div id="root"></div> <hr>
+    <h2 style="text-align: center;">أخبار السودان العاجلة</h2>
+    <div id="news-container">جاري جلب الأخبار...</div>
 
     <script type="module" src="/src/main.tsx"></script>
+    <script src="/fetchNews.js"></script>
+  </body>
+</html>
     <script src="/fetchNews.js"></script>
   </body>
 </html>
