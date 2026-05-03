@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function App() {
   const [articles, setArticles] = useState([]);
-  const [status, setStatus] = useState('جاري جلب الأخبار...');
+  const [status, setStatus] = useState('جاري تحميل الأخبار...');
 
   useEffect(() => {
     const fetchNews = async () => {
