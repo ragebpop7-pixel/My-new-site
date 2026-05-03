@@ -28,16 +28,15 @@ export const mockArticles: NewsArticle[] = [
       'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800',
   },
   {
-    id: '3',
-    title: 'الرياضة: المنتخب الوطني يستعد لمباراة حاسمة في التصفيات القارية',
-    excerpt: 'استعدادات مكثفة للمباراة القادمة.',
-    content: 'المنتخب يواصل تدريباته.',
-    category: 'sports',
-    author: 'مراسل رياضي',
-    publishDate: '2024-05-14',
-    imageUrl:
-      'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=800',
-  },
+  id: '3',
+  title: 'الرياضة: المنتخب الوطني يستعد لمباراة حاسمة في التصفيات القارية',
+  excerpt: '...',
+  content: '...',
+  category: 'sports',
+  author: '...',
+  publishDate: '2024-05-14',
+  imageUrl: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=800'
+},
   {
     id: '4',
     title: 'قمة أفريقية لبحث دعم الاستقرار في السودان',
