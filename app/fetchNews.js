@@ -1,3 +1,4 @@
+alert("السكربت شغال!");
 const apiKey = '40a916fb34df43ea9776e1e50715663b';
 const url = `https://newsapi.org/v2/everything?q=السودان&apiKey=${apiKey}`;
 
