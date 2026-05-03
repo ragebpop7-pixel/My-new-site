@@ -6,7 +6,6 @@ import TrendingSection from '../components/TrendingSection';
 import Newsletter from '../components/Newsletter';
 import CategoryNav from '../components/CategoryNav';
 import { motion } from 'motion/react';
-import React from 'react';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,10 +44,10 @@ export default function Home() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Premium Hero Section */}
+        {/* HERO SECTION */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-          
-          {/* Main Story */}
+
+          {/* MAIN STORY */}
           <div className="lg:col-span-8">
             {mainStory && (
               <motion.div
@@ -57,43 +56,43 @@ export default function Home() {
                 className="group relative"
               >
                 <Link to={`/article/${mainStory.id}`}>
-  <div className="relative aspect-[16/9] overflow-hidden rounded-3xl mb-6 shadow-2xl">
-    
-    <img
-      src={mainStory.imageUrl}
-      alt={mainStory.title}
-      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-      referrerPolicy="no-referrer"
-    />
+                  <div className="relative aspect-[16/9] overflow-hidden rounded-3xl mb-6 shadow-2xl">
 
-    <div className="absolute inset-0 gradient-overlay" />
+                    <img
+                      src={mainStory.imageUrl}
+                      alt={mainStory.title}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                      referrerPolicy="no-referrer"
+                    />
 
-    <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
-      <div className="flex items-center gap-3 mb-4">
-        <span className="bg-brand-red text-white px-3 py-1 rounded-full text-xs font-black uppercase shadow-lg">
-          خبر رئيسي
-        </span>
-        <span className="text-white/70 font-bold text-xs">
-          {mainStory.publishDate}
-        </span>
-      </div>
+                    <div className="absolute inset-0 gradient-overlay" />
 
-      <h1 className="text-2xl md:text-5xl font-black leading-tight group-hover:text-brand-red transition-colors">
-        {mainStory.title}
-      </h1>
+                    <div className="absolute bottom-0 p-6 md:p-10 text-white w-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="bg-brand-red text-white px-3 py-1 rounded-full text-xs font-black uppercase shadow-lg">
+                          خبر رئيسي
+                        </span>
+                        <span className="text-white/70 font-bold text-xs">
+                          {mainStory.publishDate}
+                        </span>
+                      </div>
 
-      <p className="hidden md:block text-white/80 text-lg font-medium mt-4 line-clamp-2 max-w-3xl">
-        {mainStory.excerpt}
-      </p>
-    </div>
+                      <h1 className="text-2xl md:text-5xl font-black leading-tight group-hover:text-brand-red transition-colors">
+                        {mainStory.title}
+                      </h1>
 
-  </div>
-</Link>
+                      <p className="hidden md:block text-white/80 text-lg font-medium mt-4 line-clamp-2 max-w-3xl">
+                        {mainStory.excerpt}
+                      </p>
+                    </div>
+
+                  </div>
+                </Link>
               </motion.div>
             )}
           </div>
 
-          {/* Side Stories */}
+          {/* SIDE STORIES */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             {sideStories.map((article) => (
               <div
@@ -106,9 +105,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Latest News */}
+        {/* LATEST NEWS */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
+
           <div className="lg:col-span-8 space-y-10">
             <div className="flex items-center justify-between border-b-4 border-brand-blue pb-2 mb-8">
               <h2 className="text-2xl font-black text-brand-blue">
@@ -127,11 +126,14 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Sidebar */}
+          {/* SIDEBAR */}
           <aside className="lg:col-span-4 space-y-10">
             <TrendingSection />
             <Newsletter />
-          </aside></div>
+          </aside>
+
+        </div>
+      </div>
     </main>
   );
 }
