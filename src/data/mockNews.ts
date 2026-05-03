@@ -13,7 +13,7 @@ export const mockArticles: NewsArticle[] = [
     category: 'politics',
     author: 'أحمد السوداني',
     publishDate: '2024-05-15',
-    imageUrl: 'https://images.unsplash.com/photo-1541410965313-d53b3c16ef17?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=800'
     isTrending: true
   },
   {
