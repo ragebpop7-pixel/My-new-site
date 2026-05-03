@@ -1,4 +1,4 @@
-alert("السكربت شغال!");
+
 const apiKey = '40a916fb34df43ea9776e1e50715663b';
 const url = `// البحث هنا بيشمل كلمة "أفريقيا" أو أسماء دول أفريقية كبرى باللغة العربية
 const url = `https://newsapi.org/v2/everything?q=(أفريقيا OR "شمال أفريقيا" OR "القرن الأفريقي")&sortBy=publishedAt&language=ar&apiKey=${apiKey}`;
