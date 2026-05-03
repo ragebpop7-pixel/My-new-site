@@ -1,11 +1,11 @@
 async function getNews() {
-  const res = await fetch("https://newsapi.org/v2/everything?q=sudan&apiKey=40a916fb34df43ea9776e1e50715663b")
-    "",
+  const res = await fetch(
+    "https://newsapi.org/v2/everything?q=sudan&apiKey=40a916fb34df43ea9776e1e50715663b",
     { cache: "no-store" }
   );
 
   const data = await res.json();
-  return data.articles;
+  return data.articles || [];
 }
 
 export default async function Sudan() {
