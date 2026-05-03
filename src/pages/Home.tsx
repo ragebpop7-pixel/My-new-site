@@ -32,9 +32,6 @@ export default function Home() {
   return (
     <main className="min-h-screen pb-20">
       <CategoryNav />
-      <div style={{ background: 'red', color: 'white', padding: 10 }}>
-  HOME IS WORKING
-</div>
 
       {/* 🔍 SEARCH BAR */}
       <div className="mb-6 flex justify-center px-4">
@@ -135,4 +132,4 @@ export default function Home() {
       </div>
     </main>
   );
-}
+                  }
