@@ -25,7 +25,7 @@ export const mockArticles: NewsArticle[] = [
     author: 'سارة محمد',
     publishDate: '2024-05-14',
     imageUrl:
-      'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: '3',
@@ -49,17 +49,15 @@ export const mockArticles: NewsArticle[] = [
       'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&q=80&w=800',
   },
   {
-    id: '5',
-    title: 'التعليم في السودان بين التحديات وآمال الإصلاح',
-    excerpt: 'إصلاح التعليم أولوية وطنية.',
-    content: 'العمل على تطوير المناهج وتحسين بيئة التعلم رغم الظروف الصعبة.',
-    category: 'opinion',
-    author: 'د. عبدالله خالد',
-    publishDate: '2024-05-12',
-    imageUrl:
-      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800',
-  }
-];
+  id: '3',
+  title: 'الرياضة: المنتخب الوطني يستعد لمباراة حاسمة في التصفيات القارية',
+  excerpt: '...',
+  content: '...',
+  category: 'sports',
+  author: '...',
+  publishDate: '2024-05-14',
+  imageUrl: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=800'
+},
 
 export const breakingNews = [
   'عاجل: بدء مشاورات سياسية جديدة في الخرطوم.',
