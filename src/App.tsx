@@ -5,11 +5,9 @@ export default function App() {
   const [status, setStatus] = useState('جاري تحميل الأخبار...');
 
   useEffect(() => {
-    const fetchNews = async () => {
-      // المفتاح بتاعك
-      const apiKey = '733ec455e336be1b8b95d2c3a17b7938';
-      // الرابط - تأكد إنه HTTPS
-      const url = `https://gnews.io/api/v4/search?q=السودان&lang=ar&max=5&apikey=${apiKey}`;
+    const apiKey = '733ec455e336be1b8b95d2c3a17b7938';
+const url = `https://gnews.io/api/v4/top-headlines?category=general&lang=ar&country=sd&apikey=${apiKey}`;
+
 
       try {
         const response = await fetch(url);
