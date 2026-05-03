@@ -110,7 +110,6 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-gray-500">لا توجد نتائج للبحث...</h2>
           </div>
         )}
-      </div>
-    </main>
-  );
+      </div></main>
+);
 }
