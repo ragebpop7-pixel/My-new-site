@@ -174,7 +174,50 @@ footer {
 © 2026 سودان 249 - جميع الحقوق محفوظة
 </footer>
 
+<!-- باقي محتوى الصفحة -->
+
 <script>
 async function loadNews(query) {
-  const newsDiv = document.getElementById("news");
-  const status = document
+    const newsDiv = document.getElementById("news");
+    const status = document.getElementById("status");
+    
+    newsDiv.innerHTML = "";
+    status.innerText = "جاري تحميل الأخبار...";
+
+    try {
+        const res = await fetch(`https://api.gdeltproject.org/api/v2/doc/doc?query=${query}&mode=ArtList&format=json`);
+        const data = await res.json();
+
+        if (!data.articles || data.articles.length === 0) {
+            status.innerText = "لا توجد أخبار";
+            return;
+        }
+
+        data.articles.slice(0, 12).forEach(article => {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            const img = article.imageurl ? 
+                `<img src="\( {article.imageurl}" alt=" \){article.title}">` : 
+                `<img src="https://via.placeholder.com/400x200?text=No-Image" alt="No Image">`;
+
+            card.innerHTML = `
+                ${img}
+                <h3>${article.title}</h3>
+                <p>${article.sourceCountry || "خبر عالمي"}</p>
+            `;
+
+            newsDiv.appendChild(card);
+        });
+
+    } catch (err) {
+        console.error(err);
+        status.innerText = "❌ فشل تحميل الأخبار";
+    }
+}
+
+// استدعاء الدالة عند تحميل الصفحة (مثلاً أخبار السودان)
+document.addEventListener("DOMContentLoaded", () => {
+    loadNews("Sudan OR السودان");
+});
+</script>
