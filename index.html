@@ -6,218 +6,99 @@
 <title>سودان 249 | الأخبار</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-}
+    <body>
+  <!-- Header -->
+  <header>
+    <div class="logo">🇸🇩 سودان 249</div>
+    <nav class="nav">
+      <button onclick="loadNews('Sudan')">السودان</button>
+      <button onclick="loadNews('Africa OR أفريقيا')">أفريقيا</button>
+      <button onclick="loadNews('World OR عالم')">العالم</button>
+    </nav>
+  </header>
 
-/* HEADER */
-header {
-  background: #111;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  <!-- Red Breaking News Bar -->
+  <div style="background:#c8102e; color:white; text-align:center; padding:12px; font-weight:bold;">
+    عاجل: آخر أخبار السودان وأفريقيا لحظة بلحظة 🔥
+  </div>
 
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #ffcc00;
-}
+  <!-- Status -->
+  <div id="status" style="text-align:center; padding:20px; font-size:18px; color:#c8102e;">
+    جاري تحميل الأخبار...
+  </div>
 
-.nav {
-  display: flex;
-  gap: 10px;
-}
+  <!-- News Grid -->
+  <div id="news" style="padding:15px; display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:15px;">
+    <!-- الأخبار هتظهر هنا -->
+  </div>
 
-.nav button {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 8px 12px;
-}
+  <!-- Footer -->
+  <footer style="background:#111; color:white; text-align:center; padding:20px; margin-top:30px;">
+    <p>سودان 249 - جميع الحقوق محفوظة © 2026</p>
+  </footer>
 
-.nav button:hover {
-  background: #333;
-  border-radius: 5px;
-}
+  <script>
+  async function loadNews(query = "Sudan OR السودان OR Khartoum") {
+      const newsDiv = document.getElementById("news");
+      const status = document.getElementById("status");
 
-/* BREAKING */
-.breaking {
-  background: #b30000;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-}
+      status.textContent = "جاري تحميل الأخبار...";
+      newsDiv.innerHTML = "";
 
-/* LAYOUT */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-}
+      try {
+          const res = await fetch(
+              `https://api.gdeltproject.org/api/v2/doc/doc?query=${encodeURIComponent(query)}&mode=ArtList&format=json`
+          );
 
-/* GRID LIKE BBC */
-.grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 15px;
-}
+          if (!res.ok) throw new Error("خطأ في الاتصال");
 
-.main-news {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-}
+          const data = await res.json();
 
-/* CARD */
-.card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+          if (!data.articles || data.articles.length === 0) {
+              status.innerHTML = "لا توجد أخبار حالياً";
+              return;
+          }
 
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
+          newsDiv.innerHTML = "";
 
-.card h3 {
-  font-size: 15px;
-  margin: 10px;
-}
+          data.articles.slice(0, 15).forEach(article => {
+              const card = document.createElement("div");
+              card.style.cssText = `
+                background: white;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                direction: rtl;
+              `;
 
-.card p {
-  font-size: 13px;
-  margin: 0 10px 10px;
-  color: #555;
-}
+              const imgHtml = article.imageurl 
+                ? `<img src="${article.imageurl}" style="width:100%; height:190px; object-fit:cover;">`
+                : `<div style="height:190px; background:#ddd; display:flex; align-items:center; justify-content:center; color:#666;">
+                     صورة غير متوفرة
+                   </div>`;
 
-/* SIDE NEWS */
-.side {
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-}
+              card.innerHTML = `
+                ${imgHtml}
+                <div style="padding:12px;">
+                  <h3 style="margin:0 0 10px 0; font-size:16px; line-height:1.4;">${article.title}</h3>
+                  <small style="color:#555;">
+                    ${article.sourceCountry || "مصدر خارجي"} • 
+                    ${article.seendate ? new Date(article.seendate).toLocaleDateString('ar-EG') : ''}
+                  </small>
+                </div>
+              `;
+              newsDiv.appendChild(card);
+          });
 
-.side h3 {
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
-}
+          status.style.display = "none";
 
-/* STATUS */
-.status {
-  text-align: center;
-  margin: 15px;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #111;
-  color: white;
-  margin-top: 30px;
-}
-
-/* MOBILE */
-@media(max-width: 900px){
-  .grid {
-    grid-template-columns: 1fr;
+      } catch (err) {
+          console.error(err);
+          status.innerHTML = `❌ فشل تحميل الأخبار<br><small style="font-size:14px;">${err.message}</small>`;
+      }
   }
-}
-</style>
-</head>
 
-<body>
-
-<header>
-  <div class="logo">🇸🇩 سودان 249</div>
-
-  <div class="nav">
-    <button onclick="loadNews('sudan')">السودان</button>
-    <button onclick="loadNews('africa')">أفريقيا</button>
-    <button onclick="loadNews('world')">العالم</button>
-    <button onclick="loadNews('technology')">تكنولوجيا</button>
-  </div>
-</header>
-
-<div class="breaking">
-🔥 عاجل: آخر أخبار السودان وأفريقيا لحظة بلحظة
-</div>
-
-<div class="container">
-
-  <div id="status" class="status">جاري تحميل الأخبار...</div>
-
-  <div class="grid">
-
-    <!-- MAIN -->
-    <div class="main-news" id="news"></div>
-
-    <!-- SIDE -->
-    <div class="side">
-      <h3>الأكثر قراءة</h3>
-      <div id="trending"></div>
-    </div>
-
-  </div>
-
-</div>
-
-<footer>
-© 2026 سودان 249 - جميع الحقوق محفوظة
-</footer>
-
-<!-- باقي محتوى الصفحة -->
-
-<script>
-async function loadNews(query) {
-    const newsDiv = document.getElementById("news");
-    const status = document.getElementById("status");
-    
-    newsDiv.innerHTML = "";
-    status.innerText = "جاري تحميل الأخبار...";
-
-    try {
-        const res = await fetch(`https://api.gdeltproject.org/api/v2/doc/doc?query=${query}&mode=ArtList&format=json`);
-        const data = await res.json();
-
-        if (!data.articles || data.articles.length === 0) {
-            status.innerText = "لا توجد أخبار";
-            return;
-        }
-
-        data.articles.slice(0, 12).forEach(article => {
-            const card = document.createElement("div");
-            card.className = "card";
-
-            const img = article.imageurl ? 
-                `<img src="\( {article.imageurl}" alt=" \){article.title}">` : 
-                `<img src="https://via.placeholder.com/400x200?text=No-Image" alt="No Image">`;
-
-            card.innerHTML = `
-                ${img}
-                <h3>${article.title}</h3>
-                <p>${article.sourceCountry || "خبر عالمي"}</p>
-            `;
-
-            newsDiv.appendChild(card);
-        });
-
-    } catch (err) {
-        console.error(err);
-        status.innerText = "❌ فشل تحميل الأخبار";
-    }
-}
-
-// استدعاء الدالة عند تحميل الصفحة (مثلاً أخبار السودان)
-document.addEventListener("DOMContentLoaded", () => {
-    loadNews("Sudan OR السودان");
-});
-</script>
+  // تحميل الأخبار عند فتح الصفحة
+  document.addEventListener("DOMContentLoaded", () => loadNews());
+  </script>
+</body>
