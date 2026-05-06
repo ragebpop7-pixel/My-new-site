@@ -24,4 +24,30 @@
         const data = await response.json();
         const container = document.getElementById('news-container');
 
-        if (data.articles && data.articles
+        if (data.articles && data.articles.length > 0) {
+          container.innerHTML = data.articles.map(article => `
+            <div style="padding: 15px; border-bottom: 1px solid #eee;">
+              <h3 style="font-size: 16px;">${article.title}</h3>
+              <p style="font-size: 13px; color:#555;">
+                ${article.description ? article.description.substring(0, 80) : ''}
+              </p>
+              <a href="${article.url}" target="_blank" style="color:#e91e63;">
+                إقرأ المزيد
+              </a>
+            </div>
+          `).join('');
+        } else {
+          container.innerHTML = "لا توجد أخبار حالياً.";
+        }
+
+      } catch (error) {
+        console.error(error);
+        document.getElementById('news-container').innerHTML = "فشل الاتصال بالمصدر.";
+      }
+    }
+
+    fetchNews();
+  </script>
+
+</body>
+</html>
