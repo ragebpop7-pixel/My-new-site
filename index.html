@@ -14,36 +14,31 @@
   </div>
 
   <script>
-    const apiKey = '733ec455e336be1b8b95d2c3a17b7938';
-    const url = `https://gnews.io/api/v4/search?q=السودان&lang=ar&max=10&apikey=${apiKey}`;
+    const rssUrl = "https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=السودان&hl=ar&gl=EG&ceid=EG:ar";
 
     async function fetchNews() {
       try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Network error');
+        const res = await fetch(rssUrl);
+        const data = await res.json();
 
-        const data = await response.json();
-        const container = document.getElementById('news-container');
+        const container = document.getElementById("news-container");
 
-        if (data.articles && data.articles.length > 0) {
-          container.innerHTML = data.articles.map(article => `
+        if (data.items && data.items.length > 0) {
+          container.innerHTML = data.items.slice(0, 10).map(item => `
             <div style="padding: 15px; border-bottom: 1px solid #eee;">
-              <h3 style="font-size: 16px;">${article.title}</h3>
-              <p style="font-size: 13px; color:#555;">
-                ${article.description ? article.description.substring(0, 80) : ''}
-              </p>
-              <a href="${article.url}" target="_blank" style="color:#e91e63;">
-                إقرأ المزيد
+              <h3 style="font-size: 16px;">${item.title}</h3>
+              <a href="${item.link}" target="_blank" style="color:#e91e63;">
+                إقرأ الخبر
               </a>
             </div>
-          `).join('');
+          `).join("");
         } else {
           container.innerHTML = "لا توجد أخبار حالياً.";
         }
 
       } catch (error) {
         console.error(error);
-        document.getElementById('news-container').innerHTML = "فشل الاتصال بالمصدر.";
+        document.getElementById("news-container").innerHTML = "فشل تحميل الأخبار.";
       }
     }
 
