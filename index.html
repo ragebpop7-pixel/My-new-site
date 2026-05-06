@@ -124,7 +124,7 @@ async function loadNews(type) {
 
     container.innerHTML = data.items.slice(0, 10).map(item => `
       <div class="news-card">
-        <img src="${item.thumbnail || 'https://via.placeholder.com/300'}">
+        <img src="${getImage(item)}">
         <div class="news-content">
           <div class="news-title">${item.title}</div>
           <a class="news-link" href="${item.link}" target="_blank">اقرأ المزيد ←</a>
