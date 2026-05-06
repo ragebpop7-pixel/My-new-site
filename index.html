@@ -1,44 +1,180 @@
-async function loadNews(query) {
-  const newsDiv = document.getElementById("news");
-  const status = document.getElementById("status");
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سودان 249 | الأخبار</title>
 
-  newsDiv.innerHTML = "";
-  status.innerText = "جاري تحميل الأخبار...";
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+}
 
-  try {
-    const res = await fetch(
-      `https://api.gdeltproject.org/api/v2/doc/doc?query=${query}&mode=ArtList&format=json`
-    );
+/* HEADER */
+header {
+  background: #111;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    const data = await res.json();
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffcc00;
+}
 
-    if (!data.articles || data.articles.length === 0) {
-      status.innerText = "لا توجد أخبار";
-      return;
-    }
+.nav {
+  display: flex;
+  gap: 10px;
+}
 
-    status.innerText = "";
+.nav button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 12px;
+}
 
-    data.articles.slice(0, 12).forEach(article => {
+.nav button:hover {
+  background: #333;
+  border-radius: 5px;
+}
 
-      const img = article.imageurl 
-        ? article.imageurl 
-        : "https://via.placeholder.com/400x200?text=No+Image";
+/* BREAKING */
+.breaking {
+  background: #b30000;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
 
-      const card = document.createElement("div");
-      card.className = "card";
+/* LAYOUT */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
 
-      card.innerHTML = `
-        <img src="${img}" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'">
-        <h3>${article.title}</h3>
-        <p>${article.sourceCountry || "خبر عالمي"}</p>
-      `;
+/* GRID LIKE BBC */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+}
 
-      newsDiv.appendChild(card);
-    });
+.main-news {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
 
-  } catch (err) {
-    console.error(err);
-    status.innerText = "❌ فشل تحميل الأخبار";
+/* CARD */
+.card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 15px;
+  margin: 10px;
+}
+
+.card p {
+  font-size: 13px;
+  margin: 0 10px 10px;
+  color: #555;
+}
+
+/* SIDE NEWS */
+.side {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.side h3 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+}
+
+/* STATUS */
+.status {
+  text-align: center;
+  margin: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: white;
+  margin-top: 30px;
+}
+
+/* MOBILE */
+@media(max-width: 900px){
+  .grid {
+    grid-template-columns: 1fr;
   }
 }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🇸🇩 سودان 249</div>
+
+  <div class="nav">
+    <button onclick="loadNews('sudan')">السودان</button>
+    <button onclick="loadNews('africa')">أفريقيا</button>
+    <button onclick="loadNews('world')">العالم</button>
+    <button onclick="loadNews('technology')">تكنولوجيا</button>
+  </div>
+</header>
+
+<div class="breaking">
+🔥 عاجل: آخر أخبار السودان وأفريقيا لحظة بلحظة
+</div>
+
+<div class="container">
+
+  <div id="status" class="status">جاري تحميل الأخبار...</div>
+
+  <div class="grid">
+
+    <!-- MAIN -->
+    <div class="main-news" id="news"></div>
+
+    <!-- SIDE -->
+    <div class="side">
+      <h3>الأكثر قراءة</h3>
+      <div id="trending"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+© 2026 سودان 249 - جميع الحقوق محفوظة
+</footer>
+
+<script>
+async function loadNews(query) {
+  const newsDiv = document.getElementById("news");
+  const status = document
